@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+
+<!-- 把fragment 独立到一个文件内 -->
+<body th:inline="text">
+
+    <div  id="onlydiv">
+        only a div
+    </div>
+
+    <div th:fragment="bannerNoParam" id="bannerElementNoP">
+        1111111this is a fragment no param
+    </div>
+    <div th:fragment="banner(color,text)" id="bannerElement">
+        111111this is a fragment.<span th:style="'background-color:'+${color}"><span th:text="${text}">!</span></span>
+    </div>
+</body>
+</html>

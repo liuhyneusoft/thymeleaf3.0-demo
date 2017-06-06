@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/core.css}">
+</head>
+
+<body>
+    <div th:insert="dashboard :: #menu"></div>
+    <div>
+        <div>
+            <img th:src="@{/img/pic.JPG}" />
+            <div th:object="${demoForms}">
+                <output type="text" th:text="*{name}"/>
+                <output type="text" th:text="*{role}"/>
+                <output type="text" th:text="*{mail}"/>
+                <div>
+                    <span>Assigned Pay Plan:</span>
+                    <output type="text" th:text="*{assignPP}"/>
+                </div>
+                <div>
+                    <span>Start Date: </span>
+                    <output type="text" th:text="*{startDate}"/>
+                </div>
+                <div>
+                    <span> Status:</span>
+                    <output type="text" th:text="*{status}"/>
+                </div>
+                <div>
+                    <span>User Request:</span>
+                    <output type="text" th:text="*{userReq}"/>
+                </div>
+                <div>
+                    <span>Open Request: </span>
+                    <output type="text" th:text="*{openReq}"/>
+                    <img th:if="*{openReq gt 4}" th:src="@{/img/triangle.JPG}" />
+                </div>
+                <div>
+                    <span>Closed Request:</span>
+                    <output type="text" th:text="*{closedReq}"/>
+                    <img th:if="*{closedReq gt 1}" th:src="@{/img/check.JPG}" />
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div  style="float:left;">
+                <img th:src="@{/img/chart.JPG}" />
+            </div>
+
+            <div  style="float:right;">
+                <table>
+                    <thead>
+                    <div th:object="${headSelected}">
+                        <tr>
+                            <th>Bonus Amount
+                                <select id="idBaSele" th:field="*{baSelected}" name="baSelected">
+                                    <option th:value="none"></option>
+                                    <option th:value="aaaa" th:text="ba1"></option>
+                                    <option th:value="bbbb" th:text="ba2"></option>
+                                </select>
+                            </th>
+                            <th>Name
+                                <select id="idNaSele" th:field="*{nameSelected}" name="nameSelected">
+                                    <option th:value="none"></option>
+                                    <option th:value="ccc" th:text="na1"></option>
+                                    <option th:value="ddd" th:text="na2"></option>
+                                </select>
+                            </th>
+
+                            <th>Description
+                                <select id="idDescSele" th:field="*{descSelected}" name="descSelected">
+                                    <option th:value="none"></option>
+                                    <option th:value="eee" th:text="de1"></option>
+                                    <option th:value="fff" th:text="de2"></option>
+                                </select>
+                            </th>
+                        </tr>
+                    </div>
+                    <tr th:each="ass:${asslist}">
+                        <td th:text="${ass.bonusAmt}"></td>
+                        <td th:text="${ass.name}"></td>
+                        <td th:text="${ass.desc}"></td>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<!--<script src="/js/jquery.js"/>  thymeleaf 3.0 这么引用的话 jQuery失效了-->
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script th:inline="javascript">
+    $(document).ready(function(){
+
+        $("#idBaSele").change(function(data){
+            var s1 = $("#idBaSele").val()
+            console.log("Bonus Amount Selected "+s1);
+        });
+
+        $("#idNaSele").change(function(data){
+            var s2 = $("#idNaSele").val()
+            console.log("Name Selected "+s2);
+        });
+
+        $("#idDescSele").change(function(data){
+            var s3 = $("#idDescSele").val()
+            console.log("Desc Selected "+s3);
+        });
+    })
+</script>
+</html>

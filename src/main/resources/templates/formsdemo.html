@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+
+<!-- 测试inline内联javascript -->
+<body th:inline="text">
+
+<!--  表单之 radio selecter -->
+<form id="iform" th:action="@{/add2}" th:method="post" th:object="${formsD}">
+    <select th:field="*{selected}" name="courseType" class="form-control">
+        <option th:value="123" th:text="none"></option>
+        <option th:each="cts,ctsStat:${courseType}" th:value="${cts.key}" th:text="${cts.value}"></option>
+    </select>
+    <label style="width: 80px;">
+        <input th:field="*{radio}" type="radio" name="mode" value="0"/>&nbsp;&nbsp;male
+    </label>
+    <label style="width: 80px;">
+        <input th:field="*{radio}" type="radio" name="mode" value="1"/>&nbsp;&nbsp;female
+    </label>
+    <td><input type="submit" value="submit"/></td>
+</form>
+
+
+<!--  展现对象的属性 -->
+<span th:text="'Hello123 ' + ${ajtest.name} + '!'">Hello, Peter!</span><!--  字符串处理 -->
+<span th:text="|Hello456 ${ajtest.name}!|">Hello, Peter!</span><!--  字符串处理 -->
+<div th:object="${ajtest}">
+    <inpu type="text" th:text="*{name}"/>
+    <inpu type="text" th:text="*{age}"/>
+</div>
+
+<!-- 测试inline内联javascript-->
+<input type="button" onclick="clic()"  th:value="ajax"/>
+
+<!-- 如果body没有，那么这里当字符串显示  Hello, [[${ajtest.name}]] -->
+<p>Hello, [[${ajtest.name}]]</p>
+
+</body>
+
+
+
+<script src="/js/jquery.js"/>
+<!-- 测试内联js -->
+<script th:inline="javascript">
+    $(function(){
+
+    })
+
+    function clic(){
+        var xx = [[${ajtest.name}]]; <!--测试内联js，获取对象的一个属性 -->
+        var yy = [[${ajtest}]];  <!--测试内联js，获取一个对象 -->
+        console.log(xx);
+    }
+</script>
+</html>

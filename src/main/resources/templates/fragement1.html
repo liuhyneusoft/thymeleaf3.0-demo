@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf tutorial: exercise 14</title>
+    <!--<link rel="stylesheet" href="../../../css/main-static.css" th:href="@{/css/main.css}" />-->
+    <meta charset="utf-8" />
+</head>
+<body th:inline="text">
+
+<!--fragmenttemp/fragt :: bannerNoParam
+ fragmenttemp/fragt 对应了 templates/fragmenttemp/fragt.html
+ bannerNoParam  对应了 fragment的name
+ -->
+
+<h2>使用fragment1-no param</h2>
+<div th:include="fragmenttemp/fragt :: bannerNoParam">Banner</div>
+
+<h2>使用fragment2 -params</h2>
+<div th:include="fragmenttemp/fragt :: banner('red', 'param for text')">Banner</div>
+
+<h2>非fragment333 -通过id，引用不包含th:fragment的片段， Thymeleaf 3.0功能</h2>
+<div th:insert="fragmenttemp/fragt :: #onlydiv"></div>
+
+<h2>使用fragment4444 -no params  Thymeleaf 3.0功能</h2>
+<div th:insert="~{fragmenttemp/fragt :: bannerNoParam}">...</div>
+
+<h2>使用fragment555 -no params  Thymeleaf 3.0功能</h2>
+<div th:insert="~{fragmenttemp/fragt :: banner('yellow', 'param for text')}">
+
+</div>
+</body>
+</html>

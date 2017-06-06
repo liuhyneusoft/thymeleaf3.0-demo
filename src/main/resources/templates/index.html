@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/core.css}">
+</head>
+
+<body>
+<div th:insert="dashboard :: #menu"></div>
+<div style="height: 400px;width: 100px;"/>
+<div th:text="${MSG}">这里是信息提示.</div>
+
+<!-- 通过ajax修改这里的值 -->
+<h1 id="xx" th:text="${host}">Hello World</h1>
+
+<form action="#" th:action="@{/add}" th:object="${user}" method="post">
+    User Name:<input type="text" th:field="*{username}" />
+    Password :<input type="text" th:field="*{password}" />
+    <input type="submit" />
+</form>
+
+<input type="button" onclick="clic()"  th:value="ajax"/>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th></th>
+            <th></th>
+            <th>id</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>用户昵称</th>
+        </tr>
+        <tr id="tabs" th:each="user:${userlist}">
+            <td th:text="${userStat.count}">1</td>
+            <!--格式 xxStat 就可以了。
+            <tr th:each="user,userStat:${users}">,userStat是状态变量，
+            有 index,count,size,current,even,odd,first,last等属性，如果没有显示设置状态变量，
+            thymeleaf会默 认给个“变量名+Stat"的状态变量。 -->
+            <td th:switch="${user.getUsername()}">
+                <span th:case="'zhangsan'">张 </span>
+                <span th:case="'lisi'">李 </span>
+                <span th:case="*">Unknown</span>
+            </td>
+            <td><span th:if="${user.id gt 4}" style="background-color: red" >大于4</span></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.petname}"></td>
+        </tr>
+    </thead>
+</table>
+
+</body>
+
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<!--<script src="/js/jquery.js"/>  thymeleaf 3.0 这么引用的话 jQuery失效了-->
+<script>
+    $(function(){
+
+    })
+
+    function clic(){
+        $.ajax({
+            url : "/jq/byebye",
+            type : "GET",
+            success : function(data){
+                $("#xx").html(data)
+
+            }
+        });
+    }
+</script>
+</html>

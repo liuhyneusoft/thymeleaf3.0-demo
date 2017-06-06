@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+
+<!--除了基本对象，Thymeleaf还为我们提供了一套实用对象，可以帮助我们在执行表达式中解决一下常见的任务:
+#execInfo:正在处理的模板信息
+#messages：获取外部信息的内部变量的一个实用方法，同时也可以用#{...}获取
+#uris:针对URL或URI进行一些转码的方法
+#conversions:根据配置执行一些转换方法
+#dates:针对java.util.Date对象的实用方法：包括日期格式化，日期提取等。
+#calendars:与#dates相似，但针对的是java.util.Calendar对象。
+#numbers:针对numeric对象格式化的实用方法
+#strings:针对String对象的实用方法，包括包含，判断起始，前/后追加等方法
+#objects:针对object类的一般实用方法
+#boolean：针对boolean运算的一些实用方法
+#arrays:针对数组的实用方法
+#lists：针对list的实用方法
+#sets：针对set的实用方法
+#map:针对map的实用方法
+#aggregates:在数组或集合中创建聚合的一些实用方法
+#ids：用于处理可能重复的标识属性的使用方法，例如，作为迭代的变量。-->
+<body>
+
+<p>
+    当前日期为： <span th:text="${#calendars.format(today,'yyyy-MM-dd')}">.....</span>
+</p>
+<p>
+    当前日期为： <span th:text="${#dates.format(today1,'MM/dd/yyyy')}">.....</span>
+</p>
+
+<p>
+   是否有dd： <span th:text="${#lists.contains(listparam,'dd')}">.....</span>
+    list长度： <span th:text="${#lists.size(listparam)}">.....</span>
+</p>
+
+</body>
+
+
+</html>
