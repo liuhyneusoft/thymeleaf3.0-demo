@@ -80,7 +80,7 @@
                             </th>
                         </tr>
                     </div>
-                    <tr th:each="ass:${asslist}">
+                    <tr th:each="ass:${asslist}" th:classappend="${assStat.odd}? 'test-tr'">
                         <td th:text="${ass.bonusAmt}"></td>
                         <td th:text="${ass.name}"></td>
                         <td th:text="${ass.desc}"></td>
@@ -90,9 +90,12 @@
             </div>
         </div>
     </div>
+    <div th:insert="fragmenttemp/dialog :: #myModal"></div>
 </body>
 <!--<script src="/js/jquery.js"/>  thymeleaf 3.0 这么引用的话 jQuery失效了-->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/dialog.js}"></script>
 <script th:inline="javascript">
     $(document).ready(function(){
 

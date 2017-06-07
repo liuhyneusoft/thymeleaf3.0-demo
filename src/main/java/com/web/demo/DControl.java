@@ -1,5 +1,6 @@
 package com.web.demo;
 
+import com.web.User;
 import com.web.UserEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +28,9 @@ public class DControl {
                 "DAM 4500","01/01/2007","Active",3,1,2));
 
         map.addAttribute("headSelected",new GridHeadSelected());
+
+        map.addAttribute("user",new UserEntity());//给dialog用
+
         return "demo";
     }
 

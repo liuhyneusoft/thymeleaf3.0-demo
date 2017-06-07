@@ -55,11 +55,13 @@
         </tr>
     </thead>
 </table>
-
+<div th:insert="fragmenttemp/dialog :: #myModal"></div>
 </body>
 
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 <!--<script src="/js/jquery.js"/>  thymeleaf 3.0 这么引用的话 jQuery失效了-->
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/dialog.js}"></script>
 <script>
     $(function(){
 

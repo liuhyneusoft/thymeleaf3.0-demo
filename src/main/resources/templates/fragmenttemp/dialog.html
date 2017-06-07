@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+
+
+<body th:inline="text">
+    <!--<div th:fragment="bannerNoParam" id="bannerElementNoP">
+        1111111this is a fragment no param
+    </div>
+    <div th:fragment="banner(color,text)" id="bannerElement">
+        111111this is a fragment.<span th:style="'background-color:'+${color}"><span th:text="${text}">!</span></span>
+    </div>-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- dialog head -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Signup</h4>
+                </div>
+
+                <!-- dialog body -->
+                <!--<div class="modal-body" id="myModalBody">Lorem ipsum</div>-->
+                <form action="#" th:action="@{/add}" th:object="${user}" method="post">
+                    User Name:<input type="text" th:field="*{username}" />
+                    Password :<input type="text" th:field="*{password}" />
+                    <input type="submit" />
+                </form>
+
+
+                <!-- dialog footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
