@@ -6,3 +6,4 @@
 6.tools.html：内置使用对象
 7.demo.html: 项目要求的页面。用到前面用到的指令。
 8.dashboard.xml ： 用到了一些布局功能，还有dialog。
+9.layout/template_o 布局使用的模板，demo1，index，index1都使用了这个模板。
