@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--<title th:text="${session.appConfig ne null ? session.appConfig.appName:'未初始化'}+'-用户登陆'">用户登陆</title>-->
+    <meta charset="utf-8"/>
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+</head>
+<body>
+    <div class="container-fluild head-part">
+        <div class="container" style="position:relative;">
+             <span style="background-color: #eea236"> 这里是模板--头 </span>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="#" th:href="@{/layout}">User List</a>
+                    </li>
+                    <li >
+                        <a href="#" th:href="@{/layout1}">Test</a>
+                    </li>
+                    <li >
+                        <a href="#" th:href="@{/demo1}">Demo</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center" style="text-align:center;border:1px #3b8cff solid;"></div>
+
+    <span style="background-color: #d0e9c6">这里是模板--内容</span>
+    <div class="container text-center main-container" style="padding-bottom:20px; margin-bottom:70px;">
+        <div th:include="this :: content"></div>
+    </div>
+
+    <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+        <div class="container text-center login-bottom">
+            &copy;<span style="background-color:#ffff00 ">这里是模板--尾</span>
+        </div>
+    </div>
+</body>
+</html>

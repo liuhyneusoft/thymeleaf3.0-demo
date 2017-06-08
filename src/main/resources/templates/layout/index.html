@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/template_o">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="/web/web-page.css"/>
+</head>
+<body>
+<div th:fragment="content" th:remove="tag">
+    <table>
+        <thead>
+        <tr>
+            <th>No</th>
+            <th></th>
+            <th></th>
+            <th>id</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>用户昵称</th>
+        </tr>
+        <tr id="tabs" th:each="user:${userlist}">
+            <td th:text="${userStat.count}">1</td>
+            <td th:switch="${user.getUsername()}">
+                <span th:case="'zhangsan'">张 </span>
+                <span th:case="'lisi'">李 </span>
+                <span th:case="*">Unknown</span>
+            </td>
+            <td><span th:if="${user.id gt 4}" style="background-color: red" >大于4</span></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.petname}"></td>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+</html>

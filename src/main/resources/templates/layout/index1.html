@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/template_o">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="/web/web-page.css"/>
+</head>
+<body>
+<div th:fragment="content" th:remove="tag">
+    <span th:text="${aaa}"/>
+</div>
+</body>
+</html>
