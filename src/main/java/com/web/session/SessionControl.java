@@ -24,4 +24,8 @@ public class SessionControl {
     public String getFromSpringBean(){
         return "go go go ";
     }
+
+    public String getFromSpringBeanPram(String s){
+        return "go go go " + s;
+    }
 }

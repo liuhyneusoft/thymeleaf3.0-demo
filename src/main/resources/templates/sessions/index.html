@@ -20,14 +20,15 @@
     <h1 th:text="*{username}"></h1>
 </div>
 
-<h1 th:text="${application.size()}"></h1>
+<!--<h1 th:text="${application.size()}"></h1>
 <div th:each="attr:${application.keySet()}">
     <span th:text="${attr}">key</span>
     <span th:text="${application.get(attr)}">value</span>
-</div>
+</div>-->
 
 <h1 style="background-color: red">从spring容器的一个bean获取信息</h1>
 <div th:text="${@sessionControl.getFromSpringBean()}">...</div>
+<div th:text="${@sessionControl.getFromSpringBeanPram('liu hai yang')}">...</div>
 </body>
 
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
