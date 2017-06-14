@@ -9,9 +9,49 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link type="text/css" rel="stylesheet" href="/web/web-page.css"/>
 </head>
-<body>
-<div th:fragment="content" th:remove="tag">
+<body th:fragment="content" th:remove="tag">
+<div> <!-- 如果th:fragment 标记在div上，那么javascript就没办法添加在模板中了 -->
     <span th:text="${aaa}"/>
+    <!--  表单之 radio selecter -->
+    <form id="iform" th:action="@{/layout/add}" th:method="post" th:object="${formsD}">
+        <select id="id_s1" th:field="*{selected}" name="courseType" class="form-control">
+            <option th:value="123" th:text="none"></option>
+            <option th:each="cts,ctsStat:${courseType}" th:value="${cts.key}" th:text="${cts.value}"></option>
+        </select>
+
+        <select id="id_s2"  th:field="*{selected1}" name="courseType111" class="form-control">
+
+        </select>
+
+        <td><input type="submit" value="submit"/></td>
+    </form>
+
 </div>
+<!--<script src="/js/jquery.js"/>  thymeleaf 3.0 这么引用的话 jQuery失效了-->
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/dialog.js}"></script>
+<script th:inline="javascript">
+    $(document).ready(function(){
+
+        $("#id_s1").change(function(data){
+            var s1 = $("#id_s1").val()
+
+            //下拉列表联动
+            $.ajax({
+                url : "/layout/change/"+s1,
+                type : "GET",
+                success : function(data){
+                    //console.log(data);
+                    var htmlValue = "<option value='none'></option>";
+                    $.each(data,function (i,v) {
+                        htmlValue+="<option value="+v.key+">"+v.value+"</option>";
+                    })
+                    $("#id_s2").html(htmlValue);
+                }
+            });
+        });
+    })
+</script>
 </body>
 </html>

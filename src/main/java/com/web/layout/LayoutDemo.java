@@ -1,5 +1,6 @@
 package com.web.layout;
 
+import com.web.FormsD;
 import com.web.SelectItem;
 import com.web.UserEntity;
 import com.web.demo.DemoForm;
@@ -7,9 +8,7 @@ import com.web.demo.DemoGrid;
 import com.web.demo.GridHeadSelected;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +34,13 @@ public class LayoutDemo {
     @RequestMapping("/layout1")
     public String index1(ModelMap map) {
         map.addAttribute("aaa","xxx");
+
+        List<SelectItem> courseType  = new ArrayList<>();
+        courseType.add(new SelectItem("s1","ss1"));
+        courseType.add(new SelectItem("s2", "ss2"));
+        map.addAttribute("courseType", courseType);
+        map.addAttribute("formsD", new FormsD());
+
         return "/layout/index1";
     }
 
@@ -76,7 +82,18 @@ public class LayoutDemo {
             selectList.add(new SelectItem("keydddddd","value44444"));
             selectList.add(new SelectItem("keyeeeeee","value55555"));
             selectList.add(new SelectItem("keyffffff","value666666"));
+        }else{
+            selectList.add(new SelectItem("keyggggg","value7777"));
+            selectList.add(new SelectItem("keyhhhh","value8888"));
+            selectList.add(new SelectItem("keyiiii","value9999"));
         }
         return selectList;
     }
+
+    @RequestMapping(value = "/layout/add",method = RequestMethod.POST)
+    public String add(@ModelAttribute(value="formsD") FormsD formsD){
+        System.out.println(formsD.getSelected1());
+        return "/layout/index1";
+    }
+
 }

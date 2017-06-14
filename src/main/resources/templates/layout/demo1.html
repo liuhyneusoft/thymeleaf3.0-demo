@@ -11,7 +11,7 @@
 </head>
 
 <body th:fragment="content" th:remove="tag">
-
+<!-- 如果th:fragment 标记在div上，那么javascript就没办法添加在模板中了 -->
     <div >
         <div>
             <img th:src="@{/img/pic.JPG}" />
@@ -113,7 +113,7 @@
                 type : "GET",
                 success : function(data){
                     //console.log(data);
-                    var htmlValue = "";
+                    var htmlValue = "<option value='none'></option>";
                     $.each(data,function (i,v) {
                         htmlValue+="<option value="+v.key+">"+v.value+"</option>";
                     })

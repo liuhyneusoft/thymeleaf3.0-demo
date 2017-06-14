@@ -7,6 +7,7 @@ public class FormsD {
     private String attr1;
     private String radio;
     private String selected;
+    private String selected1;
 
     public String getAttr1() {
         return attr1;
@@ -30,5 +31,13 @@ public class FormsD {
 
     public void setSelected(String selected) {
         this.selected = selected;
+    }
+
+    public String getSelected1() {
+        return selected1;
+    }
+
+    public void setSelected1(String selected1) {
+        this.selected1 = selected1;
     }
 }
