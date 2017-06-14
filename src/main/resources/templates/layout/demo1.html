@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/core.css}">
 </head>
 
-<body>
+<body th:fragment="content" th:remove="tag">
 
-    <div th:fragment="content" th:remove="tag">
+    <div >
         <div>
             <img th:src="@{/img/pic.JPG}" />
             <div th:object="${demoForms}">
@@ -63,6 +63,7 @@
                                     <option th:value="none"></option>
                                     <option th:value="aaaa" th:text="ba1"></option>
                                     <option th:value="bbbb" th:text="ba2"></option>
+                                    <option th:each="cts,ctsStat:${selectList}" th:value="${cts.key}" th:text="${cts.value}"></option>
                                 </select>
                             </th>
                             <th>Name
@@ -93,7 +94,7 @@
         </div>
     </div>
 
-</body>
+
 <!--<script src="/js/jquery.js"/>  thymeleaf 3.0 这么引用的话 jQuery失效了-->
 <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
@@ -101,9 +102,45 @@
 <script th:inline="javascript">
     $(document).ready(function(){
 
+
         $("#idBaSele").change(function(data){
             var s1 = $("#idBaSele").val()
             console.log("Bonus Amount Selected "+s1);
+
+            //下拉列表联动
+            $.ajax({
+                url : "/layout/change/"+s1,
+                type : "GET",
+                success : function(data){
+                    //console.log(data);
+                    var htmlValue = "";
+                    $.each(data,function (i,v) {
+                        htmlValue+="<option value="+v.key+">"+v.value+"</option>";
+                    })
+                    $("#idNaSele").html(htmlValue);
+                }
+            });
+
+
+            /*var h1 =
+                "<option value='none'></option>\n" +
+                " <option value='eeee'>na1111</option>" +
+                " <option value='ccc'>na2222</option>";
+            var h2 =
+                "<option value='none'></option>\n" +
+                " <option value='eeee'>na3333</option>" +
+                " <option value='fffff'>na4444</option>";
+
+            var h3 = $("#idNaSele").html();
+            if(s1=="key2"){
+                $("#idNaSele").html(h1);
+            }else if(s1=="bbbb"){
+                $("#idNaSele").html(h2);
+            }else{
+                $("#idNaSele").html(h3);
+            }*/
+
+
         });
 
         $("#idNaSele").change(function(data){
@@ -117,4 +154,5 @@
         });
     })
 </script>
+</body>
 </html>
