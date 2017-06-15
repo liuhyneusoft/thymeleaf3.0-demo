@@ -16,6 +16,7 @@
 <!-- 通过ajax修改这里的值 -->
 <h1 id="xx" th:text="${host}">Hello World</h1>
 
+
 <form action="#" th:action="@{/add}" th:object="${user}" method="post">
     User Name:<input type="text" th:field="*{username}" />
     Password :<input type="text" th:field="*{password}" />
@@ -23,6 +24,7 @@
 </form>
 
 <input type="button" onclick="clic()"  th:value="ajax"/>
+<input type="button" onclick="clicPost()"  th:value="ajax"/>
 
 
 <table>
@@ -77,5 +79,19 @@
             }
         });
     }
+    function clicPost(){
+        var user = {"name":"gaga","age":"124","job":"jobs"}
+        $.ajax({
+            url : "/jq/post",
+            type : "POST",
+            contentType: 'application/json',
+            data:JSON.stringify(user),
+            success : function(data){
+                $("#xx").html(data)
+
+            }
+        });
+    }
+
 </script>
 </html>

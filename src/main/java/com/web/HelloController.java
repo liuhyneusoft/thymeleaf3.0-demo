@@ -135,6 +135,13 @@ public class HelloController {
         return "tools";
     }
 
+    @RequestMapping(value = "/jq/post",method = RequestMethod.POST)
+    @ResponseBody
+    public String indePost(@RequestBody User str, ModelMap map) {
+
+        return "";
+    }
+
 
 
 }
