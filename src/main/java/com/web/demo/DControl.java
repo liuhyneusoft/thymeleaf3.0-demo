@@ -7,7 +7,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by liuhaiyang on 2017/6/6.
@@ -38,6 +40,20 @@ public class DControl {
     public String ds(ModelMap map) {
         map.addAttribute("user",new UserEntity(1,"zhangsan","aaaa","xx"));
         return "dashboard";
+    }
+
+
+    @RequestMapping("/mapdemo")
+    public String mapdemo(ModelMap map) {
+        Map<String,Object> errorMap = new HashMap<>();
+        errorMap.put("woqule","go where");
+        errorMap.put("key1","val13");
+        errorMap.put("key3","val33");
+        errorMap.put("key5","val55");
+        errorMap.put("key6","val666");
+        map.addAttribute("errorMap",errorMap);
+
+        return "maps_demo";
     }
 
 }
